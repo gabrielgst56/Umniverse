@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Umniverse';
-  texto : string = 'IFSP Campinas';
+  texto : string = 'IFSP Campinas - Umniverse';
   lat: number = -22.8505229;
   lng: number = -47.1278806;
   zoom: number = 15;
