@@ -17,7 +17,7 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDG-pCSHpNeudOfGy6S52NZhzUdlNhX8Xw'
+      apiKey: ''
     })
   ],
   providers: [],
