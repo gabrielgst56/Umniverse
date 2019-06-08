@@ -1,0 +1,28 @@
+.navdark{
+    background: linear-gradient(to right, #2c2c54, #2c2c54);
+}
+
+a{
+    color: #FFFF;
+}
+
+.icon-title{
+    margin-left: 20px;
+}
+
+
+@media (max-width: 575.98px) {
+    .collapse {
+        display: flex!important;
+        flex-basis: auto;
+    }
+    span{
+      display: none;
+    }
+    svg{
+      display: none;
+    }
+    a{
+        font-size: 14px;
+    }
+  }

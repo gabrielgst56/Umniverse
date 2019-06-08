@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 // Firebase
 import { AngularFireModule } from "@angular/fire";
 import {AngularFireAuthModule } from "@angular/fire/auth";
+import { LayoutModule } from './shared/layout.module';
 
 // Firebase Config
 var firebaseConfig = {
@@ -35,7 +36,8 @@ var firebaseConfig = {
       apiKey: ''
     }),
     AngularFireModule.initializeApp(firebaseConfig), // Firebase modules
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
