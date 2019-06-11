@@ -25,6 +25,7 @@ export class AuthService {
     async  login(email: string, password: string) {
 
         try {
+            console.log(this.afAuth.auth);
             await this.afAuth.auth.signInWithEmailAndPassword(email, password)
             alert("Login efetuado com sucesso");
             this.router.navigate(['']);
@@ -51,6 +52,8 @@ export class AuthService {
         await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
         this.router.navigate(['']);
     }
+
+    
 
     async logout() {
         try {
