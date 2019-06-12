@@ -25,7 +25,6 @@ export class AuthService {
     async  login(email: string, password: string) {
 
         try {
-            console.log(this.afAuth.auth);
             await this.afAuth.auth.signInWithEmailAndPassword(email, password)
             alert("Login efetuado com sucesso");
             this.router.navigate(['']);
