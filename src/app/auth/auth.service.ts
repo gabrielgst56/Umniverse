@@ -10,6 +10,7 @@ import { User } from 'firebase';
 })
 export class AuthService {
     user: User;
+    
 
     constructor(public afAuth: AngularFireAuth, public router: Router) {
         this.afAuth.authState.subscribe(user => {
@@ -58,15 +59,14 @@ export class AuthService {
         try {
             await this.afAuth.auth.signOut();
             localStorage.removeItem('user');
-            alert("Logout efetuado com sucesso");
-            this.router.navigate(['']);
+            this.router.navigate(['/login']);
         } catch (e) {
             alert("Error!" + e.message);
         }
     }
 
     // Verificar se o usuário está logado
-    get isLoggedIn(): boolean {
+    public isLoggedIn(): boolean {
         const user = JSON.parse(localStorage.getItem('user'));
         return user !== null;
     }

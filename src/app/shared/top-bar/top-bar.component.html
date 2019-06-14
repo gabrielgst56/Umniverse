@@ -21,7 +21,10 @@
     </ul>
     <ul class="navbar-nav mr-auto ">
       <li class="nav-item">
-        <a class="nav-link" href="#" routerLink="/login">Sign in</a>
+        <a class="nav-link" *ngIf="!isLogin"   routerLink="/login">Sign in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  *ngIf="isLogin" href="#" (click)="authService.logout()">Logout</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#" routerLink="/">Sign up</a>
