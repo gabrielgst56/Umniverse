@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from  '../../auth/auth.service'; // Serviço de autenticação
+
 @Component({
   selector: 'top-bar',
   templateUrl: './top-bar.component.html',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  isLogin: boolean;
+
+  constructor(private  authService:  AuthService) {
+  }
 
   ngOnInit() {
+    this.isLogin = this.authService.isLoggedIn();
+    console.log(this.isLogin);
   }
 
 }
