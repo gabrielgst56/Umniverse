@@ -9,14 +9,10 @@ import { AuthService } from  '../../auth/auth.service'; // Serviço de autentica
 })
 export class TopBarComponent implements OnInit {
 
-  isLogin: boolean;
-
   constructor(private  authService:  AuthService) {
   }
 
   ngOnInit() {
-    this.isLogin = this.authService.isLoggedIn();
-    console.log(this.isLogin);
   }
 
 }

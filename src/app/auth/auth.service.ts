@@ -26,9 +26,8 @@ export class AuthService {
     async  login(email: string, password: string) {
 
         try {
-            await this.afAuth.auth.signInWithEmailAndPassword(email, password)
-            alert("Login efetuado com sucesso");
-            this.router.navigate(['']);
+            await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+            this.router.navigate(['/']);
         } catch (e) {
             alert("Error!" + e.message);
         }
@@ -59,7 +58,7 @@ export class AuthService {
         try {
             await this.afAuth.auth.signOut();
             localStorage.removeItem('user');
-            this.router.navigate(['/login']);
+            this.router.navigate(['/']);
         } catch (e) {
             alert("Error!" + e.message);
         }
