@@ -21,13 +21,13 @@
     </ul>
     <ul class="navbar-nav mr-auto ">
       <li class="nav-item">
-        <a class="nav-link" *ngIf="!authService.isLoggedIn()"  routerLink="/login" routerLinkActive="active">Sign in</a>
+        <a class="nav-link" *ngIf="!authService.isLoggedIn()"  routerLink="/login">Sign in</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"  *ngIf="authService.isLoggedIn()" href="#" (click)="authService.logout()" routerLinkActive="active">Logout</a>
+        <a class="nav-link"  *ngIf="authService.isLoggedIn()" href="#" (click)="authService.logout()">Logout</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" routerLink="/">Sign up</a>
+        <a class="nav-link" href="#" routerLink="/register">Sign up</a>
       </li>
     </ul>
   </div>

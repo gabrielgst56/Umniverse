@@ -35,6 +35,7 @@ export class AuthService {
 
     async register(email: string, password: string) {
         var result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+        this.router.navigate(['/login']);
         this.sendEmailVerification();
     }
 

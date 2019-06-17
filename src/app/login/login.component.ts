@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 import { AuthService } from  '../auth/auth.service'; // Serviço de autenticação
 
@@ -9,7 +10,11 @@ import { AuthService } from  '../auth/auth.service'; // Serviço de autenticaç�
 })
 export class LoginComponent implements OnInit {
 
-    constructor(private  authService:  AuthService) { }
+    constructor(public  authService:  AuthService, public router: Router) { 
+        if (this.authService.isLoggedIn()) {
+            this.router.navigate(['/']);
+        }
+    }
 
   ngOnInit() {
   }

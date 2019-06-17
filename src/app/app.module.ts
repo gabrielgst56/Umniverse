@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
-// Firebase
 import { AngularFireModule } from "@angular/fire";
 import {AngularFireAuthModule } from "@angular/fire/auth";
 import { LayoutModule } from './shared/layout.module';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Firebase Config
 var firebaseConfig = {
@@ -27,7 +29,8 @@ var firebaseConfig = {
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,9 @@ var firebaseConfig = {
     }),
     AngularFireModule.initializeApp(firebaseConfig), // Firebase modules
     AngularFireAuthModule,
-    LayoutModule
+    LayoutModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
