@@ -13,6 +13,7 @@ import {AngularFireAuthModule } from "@angular/fire/auth";
 import { LayoutModule } from './shared/layout.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -30,7 +31,8 @@ var firebaseConfig = {
     AppComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
