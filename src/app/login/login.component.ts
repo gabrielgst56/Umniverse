@@ -16,6 +16,15 @@ export class LoginComponent implements OnInit {
         }
     }
 
+    icon = 
+    {
+      "url": "http://127.0.0.1:5500/src/public/img/yellow-umbrella.png",
+      "scaledSize": {
+        height: 80,
+        width: 80
+      },
+    };
+
   ngOnInit() {
   }
 

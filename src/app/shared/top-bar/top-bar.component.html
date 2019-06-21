@@ -1,4 +1,3 @@
-<!-- Image and text -->
 <nav class="navbar navbar-expand-sm navdark">
   <a class="navbar-brand" href="#">
     <svg xmlns="http://www.w3.org/2000/svg"
@@ -8,18 +7,12 @@
     <span class="icon-title font-italic font-weight-bold">Umniverse</span>
   </a>
   <div class="collapse navbar-collapse justify-between flex-items-center flex-auto " id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto ">
+    <ul class="navbar-nav mr-auto col-8">
         <li class="nav-item">
-          <a class="nav-link" href="#" routerLink="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Disabled</a>
+          <a class="nav-link" *ngIf="authService.isLoggedIn()" href="#" routerLink="/list-stations">Stations</a>
         </li>
     </ul>
-    <ul class="navbar-nav mr-auto ">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" *ngIf="!authService.isLoggedIn()"  routerLink="/login">Sign in</a>
       </li>

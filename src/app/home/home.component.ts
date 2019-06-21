@@ -200,7 +200,7 @@ export class HomeComponent implements OnInit {
   
   icon = 
   {
-    "url": "http://127.0.0.1:5500/src/umbrella.png",
+    "url": "http://127.0.0.1:5500/src/public/img/umbrella.png",
     "scaledSize": {
       height: 80,
       width: 80

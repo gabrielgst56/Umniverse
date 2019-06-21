@@ -2,45 +2,40 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css"
     integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
-<div class="container pt-3">
-    <div class="row justify-content-sm-center">
-        <div class="col-sm-10 col-md-8">
-            <div class="card border-info">
-                <h3 class="card-header text-center">Welcome to Umniverse</h3>
-                <div class="card-body">
-                    <div class="row justify-content-sm-center">
-                        <form class="col-md-6">
-                            <div class="content">
-                                <i class="fas fa-user "></i>
-                                <input type="text" class="form-control d-inline-flex col-md-10" placeholder="example@email.com"
-                                    #userEmail required autofocus>
 
-                            </div>
-                            <br>
-                            <div class="content">
-                                <i class="fas fa-lock icon "></i>
-                                <input type="password" class="form-control d-inline-flex col-md-10"
-                                    placeholder="Password" #userPassword required>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <button class="btn btn-lg btn-primary btn-block mb-1 col-md-10" type="submit"
-                                    (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
-                            </div>
-                            <br>
-                            <br>
-                            <div class="row">
-                                <button type="button" class="btn btn-lg btn-primary btn-block mb-1 col-md-10"><i
-                                        class="fab fa-facebook-f"></i>
-                                    Login with Facebook</button>
-                                <button type="button" class="btn btn-lg btn-danger btn-block mb-1 col-md-10"
-                                    (click)="authService.loginWithGoogle()"><i class="fab fa-google"></i> Login
-                                    with Google</button>
-                            </div>
-                        </form>
-                    </div>
+<body>
+    <div class="row justify-content-sm-center pt-5">
+        <div class="col-sm-8 col-md-7">
+            <h3 class="text-center text-light">Welcome to Umniverse</h3>
+            <div class="card-body">
+                <div class="row justify-content-sm-center">
+                    <form class="col-md-6">
+                        <div class="row justify-content-sm-center">
+                            <img src="http://127.0.0.1:5500/src/public/img/yellow-umbrella.png" width="200" height="200">
+                        </div>
+                        <div class="content">
+                            <input type="text" class="form-control d-inline-flex col-md-10 ml-4" placeholder="Email"
+                                #userEmail required autofocus>
+                        </div>
+                        <br>
+                        <div class="content">
+                            <input type="password" class="form-control d-inline-flex col-md-10 ml-4"
+                                placeholder="Password" #userPassword required>
+                        </div>
+                        <br>
+                        <div class="row justify-content-sm-center">
+                            <button type="submit" class="btn btn-lg btn-dark mb-1 col-md-3"
+                                (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
+                            <button type="button" class="btn btn-lg btn-primary mb-1 col-md-3 ml-3"><i
+                                    class="fab fa-facebook-f"></i></button>
+                            <button type="button" class="btn btn-lg btn-danger mb-1 col-md-3 ml-3"
+                                (click)="authService.loginWithGoogle()"><i class="fab fa-google"></i></button>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+</body>
