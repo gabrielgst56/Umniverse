@@ -3,6 +3,7 @@ import { Station } from '../models/station';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { APIRepository } from '../api-repository.service';
+import { Guid } from "guid-typescript";
 
 @Component({
   selector: 'app-add-station',
@@ -11,8 +12,7 @@ import { APIRepository } from '../api-repository.service';
 })
 export class AddStationComponent implements OnInit {
 
-  constructor(private formBuilder:FormBuilder, private router: Router, private  apiRepository:  APIRepository) { 
-
+  constructor(private formBuilder:FormBuilder, private router: Router, private  APIRepository:  APIRepository) { 
   }
 
   submitted = false;
@@ -22,8 +22,9 @@ export class AddStationComponent implements OnInit {
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       name:['', Validators.required],
-      price: [],
-      umbrellaQuantity: []
+      latitude: ['', Validators.required],
+      longitude: ['', Validators.required],
+      capacidade: ['', Validators.required]
     });
   }
 
@@ -37,30 +38,23 @@ export class AddStationComponent implements OnInit {
         return;
     }
 
-    /*let station:Station = new Station(
-      0,
-      this.addForm.value.name,
-      this.addForm.value.author,
-      null,
-      this.addForm.value.price,
-      this.addForm.value.quantity
-    );*/
     let station = new Station(
-      1,
-      "Teste",
-      0,
-      0,
-      10
+      this.addForm.value.name,
+      this.addForm.value.latitude,
+      this.addForm.value.longitude,
+      this.addForm.value.capacidade,
+      null
     );
 
-    this.apiRepository.addStation(station)
-    .subscribe( data => {
-      this.router.navigate(['list-station']);
-    });
+    let result = this.APIRepository.addStation(station);
+
+    if(result){
+      this.router.navigate(['list-stations']);
+    }
   }
 
   return(){
-    this.router.navigate(['list-station']);
+    this.router.navigate(['list-stations']);
   }
   
 }

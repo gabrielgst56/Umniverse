@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 
-import{ APIRepository } from './../api-repository.service'
+import { APIRepository } from './../api-repository.service'
 import { Station } from '../models/station';
 
 @Component({
@@ -12,35 +12,33 @@ import { Station } from '../models/station';
 
 export class ListStationComponent implements OnInit {
 
-  private  Stations:  Array<Station> = [];
+  private stations: Array<Station> = [];
 
-  constructor(private router: Router, private  apiRepository:  APIRepository
+  constructor(private router: Router, private apiRepository: APIRepository
   ) { }
 
   ngOnInit() {
-     this.getStations();
+    this.getStations();
   }
 
-  public getStations(){
-      this.apiRepository.listStations().subscribe((data:  Array<Station>) => {
-          this.Stations  =  data;
-      });
+  public getStations() {
+    this.apiRepository.listStations().subscribe((data: Array<Station>) => {
+      this.stations = data;      
+    });
   }
 
-  public deleteStation(Station: Station) : void {
-    this.apiRepository.deleteStation(Station)
-      .subscribe( data => {
-        this.getStations();
-      })
+  public deleteStation(Station: Station): void {
+    this.apiRepository.deleteStation(Station);
+    this.getStations();
   }
 
-  public editStation(Station: Station) : void{
+  public editStation(Station: Station): void {
     this.apiRepository.Station = Station;
     this.router.navigate(['edit-station']);
   }
 
 
-  public addStation() : void{
+  public addStation(): void {
     this.router.navigate(['add-station']);
   }
 

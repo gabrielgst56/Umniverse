@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { APIRepository } from '../api-repository.service';
+import { Station } from '../models/station';
 
 @Component({
   selector: 'home',
@@ -7,11 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  private stations: Array<Station> = [];
+  
+  constructor(private apiRepository: APIRepository) { }
 
   ngOnInit() {
+    this.getStations();
   }
 
+  public getStations() {
+    this.apiRepository.listStations().subscribe((data: Array<Station>) => {
+      this.stations = data;      
+    });
+  }
 
   styles = [
   {
@@ -190,14 +200,10 @@ export class HomeComponent implements OnInit {
   }
 ];
 
-
-
-
   lat: number = -22.8505229;
   lng: number = -47.1278806;
   zoom: number = 15;
 
-  
   icon = 
   {
     "url": "http://127.0.0.1:5500/src/public/img/umbrella.png",

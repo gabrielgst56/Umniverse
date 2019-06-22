@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 
 import { AngularFireModule } from "@angular/fire";
 import {AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { LayoutModule } from './shared/layout.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -48,6 +49,7 @@ var firebaseConfig = {
     }),
     AngularFireModule.initializeApp(firebaseConfig), // Firebase modules
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     LayoutModule,
     FormsModule,
     ReactiveFormsModule

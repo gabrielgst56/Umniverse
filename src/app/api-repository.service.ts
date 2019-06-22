@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Station } from './models/station';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -7,27 +9,45 @@ import { Station } from './models/station';
 
 export class APIRepository {
 
-  public Station : Station;
+  constructor(private db: AngularFireDatabase) { }
 
-  API_URL  =  '../api/';
-  
-  constructor() {}
-  
-   
-  listStations(): any{
-    //list Stations on firebase
+  public Station: Station;
+
+  listStations() {
+    return this.db.list('Station')
+      .snapshotChanges()
+      .pipe(
+        map(changes => {
+          return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        })
+      );
   }
 
-  addStation(Station: Station): any{
-    //add Stations to firebase
+  addStation(station: Station): boolean {
+    this.db.list('Station').push(station)
+      .then((result: any) => {
+        return true;
+      }).catch((error: any) => {
+        return false;
+      });
+
+    return true;
   }
 
-  deleteStation(Station: Station): any {
-    //delete Station on firebase
+  deleteStation(station: Station) {
+    this.db.object(`Station/${station.key}`).remove();
   }
 
-  editStation(Station: Station) {
-    //edit station in firebase
+  editStation(station: Station) {
+    debugger;
+    this.db.object(`Station/${station.key}`).update(station)
+      .then((result: any) => {
+        return true;
+      }).catch((error: any) => {
+        return false;
+      });
+
+    return true;
   }
 
 }
