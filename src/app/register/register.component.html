@@ -9,7 +9,7 @@
                 <h3 class="card-header text-center">Create your account in Umniverse</h3>
                 <div class="card-body">
                     <div class="row justify-content-sm-center">
-                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit(userEmail.value, userPassword.value)" class="col-md-6">
+                        <form [formGroup]="form" (ngSubmit)="onSubmit(userEmail.value, userPassword.value)" class="col-md-6">
                             <div class="content">
                                 <i class="fas fa-user "></i>
                                 <input type="email"  formControlName="email" email  class="form-control d-inline-flex col-md-10" placeholder="example@email.com" [ngClass]="{ 'is-invalid': f.email.errors && submitted }"

@@ -29,26 +29,30 @@ export class AuthService {
             await this.afAuth.auth.signInWithEmailAndPassword(email, password);
             this.router.navigate(['/']);
         } catch (e) {
-            alert("Error!" + e.message);
+            return false;
         }
     }
 
     async register(email: string, password: string) {
         var result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-        this.router.navigate(['/login']);
         this.sendEmailVerification();
     }
 
     async sendEmailVerification() {
         await this.afAuth.auth.currentUser.sendEmailVerification()
-        this.router.navigate(['']);
+        this.router.navigate(['/login']);
     }
 
     async sendPasswordResetEmail(passwordResetEmail: string) {
-        return await this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail);
+        try{
+            await this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail);
+            return true;
+        }catch{
+            return false;
+        }
     }
 
-    async  loginWithGoogle() {
+    async loginWithGoogle() {
         await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
         this.router.navigate(['']);
     }

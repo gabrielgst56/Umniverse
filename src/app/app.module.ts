@@ -16,16 +16,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListStationComponent } from './list-stations/list-stations.component';
 import { AddStationComponent } from './add-station/add-station.component';
 import { EditStationComponent } from './edit-station/edit-station.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
-// Firebase Config
+// Your web app's Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyBS3vgEW-1KGj0h-ykUfm4BcUw7j64RsGw",
-    authDomain: "testebancodedados-19d21.firebaseapp.com",
-    databaseURL: "https://testebancodedados-19d21.firebaseio.com",
-    projectId: "testebancodedados-19d21",
-    storageBucket: "testebancodedados-19d21.appspot.com",
-    messagingSenderId: "562501988850",
-    appId: "1:562501988850:web:ed08837e0f95f1af"
+    apiKey: "AIzaSyB_Odv5MB6c3_DHcnzcYnfUdxM3zfeAFAs",
+    authDomain: "umniverse-282b8.firebaseapp.com",
+    databaseURL: "https://umniverse-282b8.firebaseio.com",
+    projectId: "umniverse-282b8",
+    storageBucket: "umniverse-282b8.appspot.com",
+    messagingSenderId: "684416461858",
+    appId: "1:684416461858:web:4666767b8393472c"
 };
 
 @NgModule({
@@ -36,7 +37,8 @@ var firebaseConfig = {
     RegisterComponent,
     ListStationComponent,
     AddStationComponent,
-    EditStationComponent
+    EditStationComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
