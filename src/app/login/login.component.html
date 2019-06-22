@@ -10,11 +10,13 @@
                 <div class="card-body">
                     <div class="row justify-content-sm-center">
                         <form class="col-md-6">
+                            <div class="alert alert-danger" role="alert" *ngIf="!isCompleted && submitted" >
+                                    Incorrect email or password.
+                            </div>
                             <div class="content">
                                 <i class="fas fa-user "></i>
                                 <input type="text" class="form-control d-inline-flex col-md-10" placeholder="example@email.com"
                                     #userEmail required autofocus>
-
                             </div>
                             <br>
                             <div class="content">
@@ -25,8 +27,9 @@
                             <br>
                             <div class="row">
                                 <a href="#" routerLink="/forgot=password">Forgot Password?</a>
+                                
                                 <button class="btn btn-lg btn-primary btn-block mb-1 col-md-10" type="submit"
-                                    (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
+                                    (click)="onSubmit(userEmail.value, userPassword.value)">Login</button>
                             </div>
                             <br>
                             <br>

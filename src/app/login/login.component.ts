@@ -10,6 +10,9 @@ import { AuthService } from  '../auth/auth.service'; // Serviço de autenticaç�
 })
 export class LoginComponent implements OnInit {
 
+    isCompleted: boolean;
+    submitted: boolean;
+
     constructor(public  authService:  AuthService, public router: Router) { 
         if (this.authService.isLoggedIn()) {
             this.router.navigate(['/']);
@@ -18,5 +21,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  onSubmit(email: string, password: string) {
+
+    this.submitted = true;
+
+    let returnValidate = this.authService.login(email, password);
+    returnValidate.then((result) => {
+        this.isCompleted = result;
+    });
+}
 
 }

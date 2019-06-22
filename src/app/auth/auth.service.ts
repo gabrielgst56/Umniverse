@@ -29,7 +29,7 @@ export class AuthService {
             await this.afAuth.auth.signInWithEmailAndPassword(email, password);
             this.router.navigate(['/']);
         } catch (e) {
-            alert("Error!" + e.message);
+            return false;
         }
     }
 
