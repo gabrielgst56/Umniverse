@@ -9,33 +9,32 @@
             <h3 class="text-center text-light">Welcome to Umniverse</h3>
             <div class="card-body">
                 <div class="row justify-content-sm-center">
-                    <form class="col-md-6">
+                    <form class="col-md-6 ">
+                        <div class="alert alert-danger" role="alert" *ngIf="!isCompleted && submitted">
+                            Incorrect username or password.
+                        </div>
                         <div class="row justify-content-sm-center">
-                            <img src="http://127.0.0.1:5500/src/public/img/yellow-umbrella.png" width="200" height="200">
+                            <img src="http://127.0.0.1:5500/src/public/img/yellow-umbrella.png" width="200"
+                                height="200">
                         </div>
-                        <div class="content">
-                            <input type="text" class="form-control d-inline-flex col-md-10 ml-4" placeholder="Email"
-                                #userEmail required autofocus>
+                        <div class="content justify-content-center ">
+                            <a href="#" routerLink="/forgot-password">Forgot Password?</a>
+                            <br><br>
+                            <input type="text" class="form-control " placeholder="Email" #userEmail required autofocus>
+                            <br>
+                            <input type="password" class="form-control" placeholder="Password" #userPassword required>
                         </div>
-                        <br>
-                        <div class="content">
-                            <input type="password" class="form-control d-inline-flex col-md-10 ml-4"
-                                placeholder="Password" #userPassword required>
-                        </div>
-                        <br>
-                        <div class="row justify-content-sm-center">
-                            <button type="submit" class="btn btn-lg btn-dark mb-1 col-md-3"
-                                (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
-                            <button type="button" class="btn btn-lg btn-primary mb-1 col-md-3 ml-3"><i
+                        <div class="content pt-3 ml-3 ">
+                            <button type="submit" class="btn btn-lg btn-dark mb-1 col-lg-3 ml-3"
+                                (click)="onSubmit(userEmail.value, userPassword.value)">Login</button>
+                            <button type="button" class="btn btn-lg btn-primary mb-1 col-lg-3 ml-3"><i
                                     class="fab fa-facebook-f"></i></button>
-                            <button type="button" class="btn btn-lg btn-danger mb-1 col-md-3 ml-3"
+                            <button type="button" class="btn btn-lg btn-danger mb-1 col-lg-3 ml-3"
                                 (click)="authService.loginWithGoogle()"><i class="fab fa-google"></i></button>
                         </div>
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
