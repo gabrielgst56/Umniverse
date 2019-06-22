@@ -18,11 +18,11 @@ export class APIRepository {
     //list Stations on firebase
   }
 
-  addStation(Station: Station){
+  addStation(Station: Station): any{
     //add Stations to firebase
   }
 
-  deleteStation(Station: Station):any {
+  deleteStation(Station: Station): any {
     //delete Station on firebase
   }
 

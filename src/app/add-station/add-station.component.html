@@ -1,0 +1,30 @@
+<body>
+  <div class="row justify-content-sm-center pt-5">
+    <div class="content col-sm-8 col-md-6">
+      <h2 class="text-center">New Station</h2>
+      <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="name" formControlName="name" placeholder="Name" name="name" class="form-control" id="name"
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Latitude:</label>
+          <input formControlName="price" placeholder="Latitude" name="price" type="number" class="form-control" id="price">
+        </div>
+
+        <div class="form-group">
+          <label for="quantity">Quantity:</label>
+          <input formControlName="quantity" placeholder="Quantity" name="quantity" class="form-control" id="quantity">
+        </div>
+
+        <button class="btn btn-success">Confirm</button>
+        <button class="btn btn-success" style="margin-left: 20px;" (click)="return()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</body>

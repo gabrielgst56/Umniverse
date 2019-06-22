@@ -13,6 +13,9 @@ import {AngularFireAuthModule } from "@angular/fire/auth";
 import { LayoutModule } from './shared/layout.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListStationComponent } from './list-stations/list-stations.component';
+import { AddStationComponent } from './add-station/add-station.component';
+import { EditStationComponent } from './edit-station/edit-station.component';
 
 // Firebase Config
 var firebaseConfig = {
@@ -30,7 +33,10 @@ var firebaseConfig = {
     AppComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    ListStationComponent,
+    AddStationComponent,
+    EditStationComponent
   ],
   imports: [
     BrowserModule,
