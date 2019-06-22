@@ -10,6 +10,7 @@ import { AuthService } from './../auth/auth.service';
 })
 export class ForgotPasswordComponent implements OnInit {
 
+    isCompleted: boolean;
     submitted: boolean;
     form: FormGroup;
 
@@ -30,6 +31,9 @@ export class ForgotPasswordComponent implements OnInit {
         return;
     }
 
-    this.authService.sendPasswordResetEmail(email);
+    let returnValidate = this.authService.sendPasswordResetEmail(email)
+    returnValidate.then((result) => {
+        this.isCompleted = result;
+    });
   }
 }

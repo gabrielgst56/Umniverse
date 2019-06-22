@@ -44,10 +44,15 @@ export class AuthService {
     }
 
     async sendPasswordResetEmail(passwordResetEmail: string) {
-        return await this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail);
+        try{
+            await this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail);
+            return true;
+        }catch{
+            return false;
+        }
     }
 
-    async  loginWithGoogle() {
+    async loginWithGoogle() {
         await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
         this.router.navigate(['']);
     }
