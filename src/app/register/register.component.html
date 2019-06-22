@@ -11,6 +11,9 @@
                 <div class="row justify-content-sm-center">
                     <form [formGroup]="form" (ngSubmit)="onSubmit(userEmail.value, userPassword.value)"
                         class="col-md-6">
+                        <div class="alert alert-danger" role="alert" *ngIf="isExistEmail && submitted">
+                            E-mail already registered! 
+                        </div>
                         <div class="content">
                             <input type="email" formControlName="email" email
                                 class="form-control " placeholder="example@email.com"

@@ -34,8 +34,12 @@ export class AuthService {
     }
 
     async register(email: string, password: string) {
-        var result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-        this.sendEmailVerification();
+        try {
+            var result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+            this.sendEmailVerification();
+        }catch{
+            return false;
+        }
     }
 
     async sendEmailVerification() {
@@ -53,20 +57,20 @@ export class AuthService {
     }
 
     async loginWithGoogle() {
-        await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+        await this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider())
         this.router.navigate(['']);
     }
 
+    async loginWithFacebook() {
+        await this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider())
+        this.router.navigate(['']);
+    }
     
 
     async logout() {
-        try {
-            await this.afAuth.auth.signOut();
-            localStorage.removeItem('user');
-            this.router.navigate(['/']);
-        } catch (e) {
-            alert("Error!" + e.message);
-        }
+        await this.afAuth.auth.signOut();
+        localStorage.removeItem('user');
+        this.router.navigate(['/']);
     }
 
     // Verificar se o usuário está logado

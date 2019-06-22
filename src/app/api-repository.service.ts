@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Station } from './models/station';
+import { User } from './models/user';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -50,4 +51,14 @@ export class APIRepository {
     return true;
   }
 
+  addUser(user: User){
+    this.db.list('User').push(user)
+    .then((result: any) => {
+      return true;
+    }).catch((error: any) => {
+      return false;
+    });
+
+    return true;
+  }
 }

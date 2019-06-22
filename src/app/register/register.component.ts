@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../auth/auth.service';
+import { User } from './../models/user';
+import { APIRepository } from './../api-repository.service';
 
 @Component({
     selector: 'app-register',
@@ -9,11 +11,12 @@ import { AuthService } from './../auth/auth.service';
     styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-    
+
+    isExistEmail: boolean;
     submitted: boolean;
     form: FormGroup;
 
-    constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
+    constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private APIRepository: APIRepository) { }
 
     ngOnInit() {
         this.form = this.formBuilder.group({
@@ -25,12 +28,25 @@ export class RegisterComponent implements OnInit {
     get f() { return this.form.controls; }
 
     onSubmit(email: string, password: string) {
+
         this.submitted = true;
 
         if (this.form.invalid) {
             return;
         }
 
-        this.authService.register(email, password)
+        let user = new User(
+            this.form.value.email,
+            false
+        );
+
+        let returnValidate = this.authService.register(email, password);
+        returnValidate.then((result) => {
+            if (result){
+                this.APIRepository.addUser(user);
+            }else{
+                this.isExistEmail = true;
+            }
+        });
     }
 }
