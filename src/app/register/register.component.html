@@ -15,12 +15,11 @@
                             E-mail already registered! 
                         </div>
                         <div class="content">
-                            <input type="email" formControlName="email" email
+                            <input type="email" formControlName="email" email pattern=".{1,}@[_a-z0-9A-Z]+(\.[a-z0-9A-Z]+)+" 
                                 class="form-control " placeholder="example@email.com"
                                 [ngClass]="{ 'is-invalid': f.email.errors && submitted }" #userEmail required autofocus>
                             <div class="invalid-feedback" *ngIf="submitted">
                                 <div *ngIf="f.email.errors?.required">E-mail is required</div>
-                                <div *ngIf="f.email.errors?.email">E-mail is invalid</div>
                             </div>
                         </div>
                         <br>

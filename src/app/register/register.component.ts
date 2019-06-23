@@ -36,17 +36,9 @@ export class RegisterComponent implements OnInit {
             return;
         }
 
-        let user = new User(
-            this.form.value.email,
-            false,
-            null
-        );
-
         let returnValidate = this.authService.register(email, password);
         returnValidate.then((result) => {
-            if (result){
-                this.APIRepository.addUser(user);
-            }else{
+            if (!result){
                 this.isExistEmail = true;
             }
         });

@@ -13,7 +13,7 @@ import { APIRepository } from './../api-repository.service';
 export class AuthService {
     user: User;
     public isAdmin: boolean;
-    
+
 
     constructor(public afAuth: AngularFireAuth, public router: Router, private APIRepository: APIRepository) {
         this.afAuth.authState.subscribe(user => {
@@ -30,13 +30,12 @@ export class AuthService {
         try {
             await this.afAuth.auth.signInWithEmailAndPassword(email, password);
             this.APIRepository.getUser(email).subscribe((data: Array<User>) => {
-                console.log(data);
-                if(data[0].IsAdmin){
-                    console.log(data);
+                if (data[0].IsAdmin) {
                     this.isAdmin = true;
-                }else{
-                    console.log(data);
                 }
+                this.user = new User(data[0].Email,
+                    data[0].IsAdmin,
+                    data[0].key);
             });
             return true;
         } catch (e) {
@@ -48,8 +47,14 @@ export class AuthService {
         try {
             var result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             this.sendEmailVerification();
+            let user = new User(
+                email,
+                false,
+                null
+            );
+            this.APIRepository.addUser(user);
             return true;
-        }catch{
+        } catch{
             return false;
         }
     }
@@ -60,29 +65,39 @@ export class AuthService {
     }
 
     async sendPasswordResetEmail(passwordResetEmail: string) {
-        try{
+        try {
             await this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail);
             return true;
-        }catch{
+        } catch{
             return false;
         }
     }
 
     async loginWithGoogle() {
-        await this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider())
+        await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+        this.APIRepository.getUser(this.afAuth.auth.currentUser.email).subscribe((data: Array<User>) => {
+            if (data.length == 0) {
+                let user = new User(
+                    this.afAuth.auth.currentUser.email,
+                    false,
+                    null
+                );
+                this.APIRepository.addUser(user);
+            } else {
+                if (data[0].IsAdmin) {
+                    this.isAdmin = true;
+                }
+            }
+        });
         this.router.navigate(['']);
     }
 
-    async loginWithFacebook() {
-        await this.afAuth.auth.signInWithRedirect(new auth.FacebookAuthProvider())
-        this.router.navigate(['']);
-    }
-    
 
     async logout() {
         await this.afAuth.auth.signOut();
         localStorage.removeItem('user');
         this.router.navigate(['/']);
+        this.user = null;
         this.isAdmin = false;
     }
 

@@ -24,12 +24,10 @@
                             <br>
                             <input type="password" class="form-control" placeholder="Password" #userPassword required>
                         </div>
-                        <div class="content pt-3 ml-3 ">
-                            <button type="submit" class="btn btn-lg btn-dark mb-1 col-lg-3 ml-3"
+                        <div class="content pt-4 ">
+                            <button type="submit" class="btn btn-lg btn-dark mb-1 col-lg-5 ml-3"
                                 (click)="onSubmit(userEmail.value, userPassword.value)">Login</button>
-                            <button type="button" class="btn btn-lg btn-primary mb-1 col-lg-3 ml-3"
-                                (click)="authService.loginWithFacebook()"><i class="fab fa-facebook-f"></i></button>
-                            <button type="button" class="btn btn-lg btn-danger mb-1 col-lg-3 ml-3"
+                            <button type="button" class="btn btn-lg btn-danger mb-1 col-lg-5 ml-3"
                                 (click)="authService.loginWithGoogle()"><i class="fab fa-google"></i></button>
                         </div>
                     </form>
