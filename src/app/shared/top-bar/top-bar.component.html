@@ -9,7 +9,7 @@
   <div class="collapse navbar-collapse justify-between flex-items-center flex-auto " id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto col-10">
         <li class="nav-item">
-          <a class="nav-link" *ngIf="authService.isLoggedIn()" href="#" routerLink="/list-stations">Stations</a>
+          <a class="nav-link" *ngIf="authService.isLoggedIn() && authService.isAdmin" href="#" routerLink="/list-stations">Stations</a>
         </li>
     </ul>
     <ul class="navbar-nav mr-auto">

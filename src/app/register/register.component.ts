@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
     onSubmit(email: string, password: string) {
 
         this.submitted = true;
+        this.isExistEmail = false;
 
         if (this.form.invalid) {
             return;
@@ -37,7 +38,8 @@ export class RegisterComponent implements OnInit {
 
         let user = new User(
             this.form.value.email,
-            false
+            false,
+            null
         );
 
         let returnValidate = this.authService.register(email, password);

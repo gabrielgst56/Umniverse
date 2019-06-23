@@ -1,22 +1,24 @@
+import { User } from './../models/user';
 import { Injectable } from '@angular/core';
 
 import { Router } from "@angular/router";
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
-import { User } from 'firebase';
+
+import { APIRepository } from './../api-repository.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
     user: User;
+    public isAdmin: boolean;
     
 
-    constructor(public afAuth: AngularFireAuth, public router: Router) {
+    constructor(public afAuth: AngularFireAuth, public router: Router, private APIRepository: APIRepository) {
         this.afAuth.authState.subscribe(user => {
             if (user) {
-                this.user = user;
-                localStorage.setItem('user', JSON.stringify(this.user));
+                localStorage.setItem('user', JSON.stringify(user));
             } else {
                 localStorage.setItem('user', null);
             }
@@ -27,7 +29,16 @@ export class AuthService {
 
         try {
             await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-            this.router.navigate(['/']);
+            this.APIRepository.getUser(email).subscribe((data: Array<User>) => {
+                console.log(data);
+                if(data[0].IsAdmin){
+                    console.log(data);
+                    this.isAdmin = true;
+                }else{
+                    console.log(data);
+                }
+            });
+            return true;
         } catch (e) {
             return false;
         }
@@ -37,6 +48,7 @@ export class AuthService {
         try {
             var result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             this.sendEmailVerification();
+            return true;
         }catch{
             return false;
         }
@@ -71,6 +83,7 @@ export class AuthService {
         await this.afAuth.auth.signOut();
         localStorage.removeItem('user');
         this.router.navigate(['/']);
+        this.isAdmin = false;
     }
 
     // Verificar se o usuário está logado
