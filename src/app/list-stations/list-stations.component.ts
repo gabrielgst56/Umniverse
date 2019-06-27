@@ -12,7 +12,7 @@ import { Station } from '../models/station';
 
 export class ListStationComponent implements OnInit {
 
-  private stations: Array<Station> = [];
+  public stations: Array<Station> = [];
 
   constructor(private router: Router, private apiRepository: APIRepository
   ) { }

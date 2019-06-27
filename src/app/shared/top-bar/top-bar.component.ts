@@ -9,7 +9,7 @@ import { AuthService } from  '../../auth/auth.service'; // Serviço de autentica
 })
 export class TopBarComponent implements OnInit {
 
-  constructor(private  authService:  AuthService) {
+  constructor(public  authService:  AuthService) {
   }
 
   ngOnInit() {
